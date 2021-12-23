@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_author_value_authors",
+  "info": {
+    "displayName": "author",
+    "icon": "grin-stars"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "avatar": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
