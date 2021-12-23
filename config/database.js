@@ -1,10 +1,8 @@
 const path = require('path');
-const parse = require('pg-connection-string').parse;
 
 module.exports = ({ env }) => {
   if(env('NODE_ENV') === 'production') {
-    const config = parse(process.env.DATABASE_URL);
-    
+  //  const config = parse(process.env.DATABASE_URL);
       return {
         connection: {
           client: 'postgres',
@@ -15,20 +13,18 @@ module.exports = ({ env }) => {
             user: env('DATABASE_USERNAME', 'strapi'),
             password: env('DATABASE_PASSWORD', 'strapi'),
             schema: env('DATABASE_SCHEMA', 'public'), // Not required
-            ssl: {
-              rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), // For self-signed certificates
-            },
+            ssl: env('DATABASE_SSL', false),
         }
       }
     }
   }
-  return{ 
-      connection: {
-      client: 'sqlite',
-      connection: {
-        filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
-      },
-      useNullAsDefault: true,
-    },
-  } 
+  // return{ 
+  //     connection: {
+  //     client: 'sqlite',
+  //     connection: {
+  //       filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+  //     },
+  //     useNullAsDefault: true,
+  //   },
+  // } 
 }
